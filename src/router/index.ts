@@ -6,8 +6,17 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'projects',
+      name: 'home',
+      redirect: { name: 'projects' },
       component: ProyectsLayout,
+      children: [
+        {
+          path: 'projects',
+          name: 'projects',
+          //manera presoza de cargar componentes
+          component: () => import('@/modules/projects/views/ProyectsView.vue'),
+        },
+      ],
     },
   ],
 });
