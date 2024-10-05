@@ -35,8 +35,15 @@
       </tbody>
     </table>
   </div>
-  <input-modal />
-  <fab-button @click="() => console.log('clicked')">
+  <input-modal
+    :open="modalOpen"
+    @close="modalOpen = false"
+    @value="onNewValue"
+    placeholder="Ingrese lo que sea"
+    title="Este es el titulo"
+    sub-title="Este es el subtitulo"
+  />
+  <fab-button @click="modalOpen = true">
     <AddCircle />
   </fab-button>
 </template>
@@ -45,4 +52,10 @@
 import FabButton from '@/modules/common/components/FabButton.vue';
 import AddCircle from '@/modules/common/icons/AddCircle.vue';
 import InputModal from '@/modules/common/components/InputModal.vue';
+import { ref } from 'vue';
+
+const modalOpen = ref(false);
+const onNewValue = (projectName: string) => {
+  console.log({ projectName });
+};
 </script>
