@@ -16,7 +16,7 @@
           <td>{{ project.name }}</td>
           <td>{{ project.tasks.length }}</td>
           <td>
-            <progress class="progress progress-primary w-56" value="40" max="100"></progress>
+            <progress class="progress progress-primary w-56" value="10" max="100"></progress>
           </td>
         </tr>
       </tbody>
