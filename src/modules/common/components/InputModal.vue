@@ -1,8 +1,8 @@
 <template>
   <dialog class="modal" :open="open">
     <div class="modal-box">
-      <h3 class="text-lg font-bold">{{ titulo }}</h3>
-      <p class="py-4">{{ subtitulo }}</p>
+      <h3 class="text-lg font-bold">{{ title }}</h3>
+      <p class="py-4">{{ subTitle }}</p>
       <div class="modal-action flex flex-col">
         <form method="dialog" @submit.prevent="submitValue">
           <input
