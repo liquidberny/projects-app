@@ -80,9 +80,13 @@ import ModalIcon from '@/modules/common/icons/ModalIcon.vue';
 import InputModal from '@/modules/common/components/InputModal.vue';
 import CustomModal from '@/modules/common/components/CustomModal.vue';
 import { ref } from 'vue';
+import { useProjectStore } from '../store/projects.store';
 
 const modalOpen = ref(false);
 const customModalOpen = ref(false);
+
+const projectsStore = useProjectStore();
+
 const onNewValue = (projectName: string) => {
   console.log({ projectName });
 };
