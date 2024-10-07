@@ -17,12 +17,12 @@ export const useProjectStore = defineStore('projects', () => {
   };
   return {
     //Properties
-    // projects,
+    projects,
 
     //Getters
     // los puntos crean una propiedad de solo lectura
     projectList: computed(() => [...projects.value]),
-
+    noProjects: computed(() => projects.value.length === 0),
     //Actions
     addProject,
   };
