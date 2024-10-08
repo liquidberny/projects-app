@@ -14,14 +14,14 @@ const router = createRouter({
           path: 'projects',
           name: 'projects',
           //manera presoza de cargar componentes
-          component: () => import('@/modules/projects/views/ProyectsView.vue'),
+          component: () => import('@/modules/projects/views/ProjectsView.vue'),
         },
         {
           path: 'project/:id',
           name: 'project',
           props: true,
           //manera presoza de cargar componentes
-          component: () => import('@/modules/projects/views/ProyectView.vue'),
+          component: () => import('@/modules/projects/views/ProjectView.vue'),
         },
       ],
     },
