@@ -16,6 +16,13 @@ const router = createRouter({
           //manera presoza de cargar componentes
           component: () => import('@/modules/projects/views/ProyectsView.vue'),
         },
+        {
+          path: 'project/:id',
+          name: 'project',
+          props: true,
+          //manera presoza de cargar componentes
+          component: () => import('@/modules/projects/views/ProyectView.vue'),
+        },
       ],
     },
   ],
