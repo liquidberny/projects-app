@@ -27,6 +27,16 @@ export const useProjectStore = defineStore('projects', () => {
     });
   };
 
+  const toogleTask = (projectId: string, taskId: string) => {
+    const project = projects.value.find((p) => p.id === projectId);
+    if (!project) return;
+
+    const task = project.tasks.find((t) => t.id === taskId);
+    if (!task) return;
+
+    task.completedAt = task.completedAt ? undefined : new Date();
+  };
+
   return {
     //Properties
     projects,
@@ -38,5 +48,6 @@ export const useProjectStore = defineStore('projects', () => {
     //Actions
     addProject,
     addTaskToProject,
+    toogleTask,
   };
 });

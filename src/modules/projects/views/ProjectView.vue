@@ -3,7 +3,7 @@
     <section class="m-2">
       <bread-crumbs :name="project?.name ?? 'No name'"></bread-crumbs>
     </section>
-    <section>
+    <section class="m-2">
       <div class="overflow-x-auto">
         <table class="table">
           <thead>
@@ -15,9 +15,16 @@
           </thead>
           <tbody>
             <tr v-for="task in project?.tasks" :key="task.id" class="hover">
-              <th></th>
+              <th>
+                <input
+                  type="checkbox"
+                  :checked="!!task.completedAt"
+                  class="checkbox checkbox-primary"
+                  @change="projectStore.toogleTask(project?.id ?? '', task.id)"
+                />
+              </th>
               <td>{{ task.name }}</td>
-              <td>placeholder</td>
+              <td>{{ task.completedAt }}</td>
             </tr>
 
             <tr class="hover">
@@ -31,7 +38,7 @@
                   @keyup.enter="addTask"
                 />
               </td>
-              <td>Desktop Support Technician</td>
+              <td></td>
             </tr>
           </tbody>
         </table>
