@@ -8,7 +8,9 @@
       <li v-for="project in projectsStore.projectList" :key="project.id">
         <template v-if="project.tasks.length > 0">
           <details>
-            <RouterLink :to="`/project/${project.id}`">{{ project.name }}</RouterLink>
+            <summary>
+              <RouterLink :to="`/project/${project.id}`">{{ project.name }}</RouterLink>
+            </summary>
             <ul>
               <li v-for="task in project.tasks" :key="task.id">
                 <RouterLink :to="`/project/${project.id}`">{{ task.name }}</RouterLink>

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useLocalStorage } from '@vueuse/core';
 
 export const useProjectStore = defineStore('projects', () => {
-  const projects = ref(useLocalStorage<Project[]>('projecys', []));
+  const projects = ref(useLocalStorage<Project[]>('projects', []));
 
   const addProject = (name: string) => {
     if (name.length === 0) return;
@@ -15,6 +15,18 @@ export const useProjectStore = defineStore('projects', () => {
       tasks: [],
     });
   };
+
+  const addTaskToProject = (projectId: string, taskName: string) => {
+    if (taskName.trim().length === 0) return;
+    const project = projects.value.find((p) => p.id === projectId);
+    if (!project) return;
+
+    project.tasks.push({
+      id: uuidv4(),
+      name: taskName,
+    });
+  };
+
   return {
     //Properties
     projects,
@@ -25,5 +37,6 @@ export const useProjectStore = defineStore('projects', () => {
     noProjects: computed(() => projects.value.length === 0),
     //Actions
     addProject,
+    addTaskToProject,
   };
 });

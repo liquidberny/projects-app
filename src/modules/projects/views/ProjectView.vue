@@ -6,7 +6,6 @@
     <section>
       <div class="overflow-x-auto">
         <table class="table">
-          <!-- head -->
           <thead>
             <tr>
               <th class="w-14">Completada</th>
@@ -15,6 +14,12 @@
             </tr>
           </thead>
           <tbody>
+            <tr v-for="task in project?.tasks" :key="task.id" class="hover">
+              <th></th>
+              <td>{{ task.name }}</td>
+              <td>placeholder</td>
+            </tr>
+
             <tr class="hover">
               <th></th>
               <td>
@@ -22,6 +27,8 @@
                   type="text"
                   class="input input-primary w-full opacity-60 transition-all hover:opacity-100"
                   placeholder="Nueva tarea"
+                  v-model="newTask"
+                  @keyup.enter="addTask"
                 />
               </td>
               <td>Desktop Support Technician</td>
@@ -48,8 +55,14 @@ const router = useRouter();
 const props = defineProps<Props>();
 const projectStore = useProjectStore();
 const project = ref<Project | undefined>();
-
+const newTask = ref('');
 // const project = projectStore.projectList.find((project) => project.id === props.id);
+const addTask = () => {
+  if (!project.value) return;
+
+  projectStore.addTaskToProject(project.value.id, newTask.value);
+  newTask.value = '';
+};
 
 watch(
   () => props.id,
@@ -60,7 +73,7 @@ watch(
     }
   },
   {
-    inmediate: true,
+    immediate: true,
   },
 );
 </script>
