@@ -1,6 +1,6 @@
 import { useProjectStore } from '@/modules/projects/store/projects.store';
 import { createPinia, setActivePinia } from 'pinia';
-import { FakeProjects } from '../../../mocks/projects.fake';
+import { fakeProjects } from '../../../mocks/projects.fake';
 
 describe('useProjectsStore', () => {
   //tenemos que inicializar pinia
@@ -44,7 +44,7 @@ describe('useProjectsStore', () => {
   });
 
   test('should load from localStorage', () => {
-    localStorage.setItem('projects', JSON.stringify(FakeProjects));
+    localStorage.setItem('projects', JSON.stringify(fakeProjects));
 
     const store = useProjectStore();
     const [project1] = store.projects;
@@ -52,7 +52,7 @@ describe('useProjectsStore', () => {
     expect(project1).toEqual({
       id: '1',
       name: 'Project 1',
-      task: expect.any(Array),
+      tasks: expect.any(Array),
     });
 
     expect(store.projects.length).toBe(3);
@@ -91,5 +91,18 @@ describe('useProjectsStore', () => {
       name: taskName,
       completedAt: expect.any(Date),
     });
+  });
+
+  test('should return the projects with completion', () => {
+    const store = useProjectStore();
+    store.$patch((state) => {
+      state.projects = fakeProjects;
+    });
+
+    expect(store.projectsWithCompletion).toEqual([
+      { id: '1', name: 'Project 1', taskCount: 4, completion: 25 },
+      { id: '2', name: 'Project 2', taskCount: 0, completion: 0 },
+      { id: '3', name: 'Project 3', taskCount: 2, completion: 50 },
+    ]);
   });
 });
