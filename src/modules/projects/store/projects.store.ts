@@ -55,7 +55,7 @@ export const useProjectStore = defineStore('projects', () => {
           id: project.id,
           name: project.name,
           taskCount: total,
-          completion: completion,
+          completion: Math.round(completion),
         };
       });
     }),
