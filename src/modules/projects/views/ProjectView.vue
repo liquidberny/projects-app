@@ -27,7 +27,7 @@
               <td>{{ task.completedAt }}</td>
             </tr>
 
-            <tr class="hover">
+            <tr>
               <th></th>
               <td>
                 <input
